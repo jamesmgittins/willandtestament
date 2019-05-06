@@ -1,0 +1,72 @@
+html {
+  background-image: url('/images/graveyard.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color:#ccc;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    padding: 0;
+  }
+}
+
+
+
+a {
+  color: #00B7FF;
+}
+a.link {
+  margin-right: 15px;
+}
+
+form#createaccount {
+  background: rgba(0,0,0,0.5);
+  padding: 15px 15px;
+  display: inline-block;
+}
+
+#createaccount h4 {
+  display: inline;
+}
+
+#createaccount input {
+  margin:15px 0;
+}
+
+#createaccount strong, #createaccount button {
+  margin: 10px 0;
+}
+
+.hidden {
+  display:none;
+}
+
+ul > li {
+  margin: 5px 0;
+}
+
+table {
+  background: rgba(0,0,0,0.5);
+  padding: 5px 15px;
+  margin: 15px 0;
+}
+
+table th, table td {
+  text-align: left;
+  padding: 5px 15px 5px 0;
+}
+
+#server-notes {
+  background: rgba(0,0,0,0.5);
+  padding: 5px 15px;
+  margin: 15px 0;
+}

@@ -1,0 +1,84 @@
+extends layout
+
+block content
+  h1= title
+  p Death is inevitable. The only question is; 
+    strong what will you leave behind?
+  p A unique Vanilla WoW experience, featuring perma-death and an account wide progression system.
+  a(href="#createaccount", class="link") Create Account
+  a(href="javascript:void(0);", onclick="document.getElementById('server-notes').className=''", class="link") Server Information
+  div(id="server-notes", class="hidden")
+    h4 Server Information
+    p Based on the latest 
+      a(href="https://cmangos.net/") CMaNGOS
+      |  code
+    p Uses WoW client 1.12.1
+    p In realmlist.wtf use 
+      strong set realmlist willandtestament.gti.nz
+    p Delete WDB folder if it exists before playing or item changes may not be reflected in the client
+    strong Rates
+    ul
+      li 3x XP
+      li 2x gold
+      li 3x health and mana regen while sitting
+      li 2x flight path speed
+      li 10x profession skill
+      li 1 additional profession slot per character
+      li 10 minute hearthstone cooldown
+      li talent respec cost capped at 1g
+    strong Progression System
+    ul
+      li When you earn xp on any of your characters you also earn paragon xp on your account
+      li Each paragon level grants
+        ul
+          li +1 to all attributes
+          li +1 additional talent point (usable at level 10 or higher)
+          li +10% xp gain (up to a maximum of 100%)
+          li +2 spell damage and healing
+      li Use chat command 
+        strong .paragon 
+        span to check your current paragon level, bonuses earned, and paragon xp
+      li Targeting another player and using the command will show their current paragon level
+    strong Gameplay Changes
+    ul
+      li resurrections are disabled. Once a character dies it will remain a ghost forever
+      li health potions have infinite uses with a 2 minute cooldown
+      li gold earned is now account wide and will not be lost upon character death
+      li most weapons and armor are now also world drops with a generous drop rate
+      li class restrictions removed from all weapons and armor
+      li new characters start with a mount
+      li mount level requirement and riding skill requirement removed
+      li mount speed increased to 100% for rare and 130% for epic mounts
+      li 100% mana regen while casting
+      li bigger bag sizes
+      li bigger stacks of items
+      li paladin blessings and warrior battle shout now last 30 mins
+      li XP gain on profession skill up
+      li druids can now proc weapons and weapon enchants (eg crusader) in feral forms
+      li soulshards are now stackable
+  h4 Character Leaderboard
+  table
+    tr
+      th Level
+      th Name
+      th Class
+      th Status
+    each val in levelLeaderboard
+      tr
+        td= val.level
+        td= val.name
+        td= val.race + " " + val.class
+        td= val.status
+  form(action="createaccount", id="createaccount", method="post")
+    h4 Create Account
+    br
+    input(type="text", placeholder="username", name="username")
+    br
+    input(type="password", placeholder="password", name="password")
+    br
+    input(type="password", placeholder="confirm password", name="confirm")
+    br
+    button Submit
+    br
+    if(accountmessage)
+      strong= accountmessage
