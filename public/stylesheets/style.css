@@ -9,13 +9,15 @@ html {
 
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
   color:#ccc;
+  max-width: 1024px;
+  margin: 5px auto;
 }
 
 @media only screen and (max-width: 600px) {
   body {
-    padding: 0;
+    padding: 5px;
   }
 }
 
@@ -40,10 +42,16 @@ form#createaccount {
 
 #createaccount input {
   margin:15px 0;
+  font-size: 20px;
+  padding:5px;
 }
 
 #createaccount strong, #createaccount button {
   margin: 10px 0;
+}
+
+#createaccount button {
+  font-size: 20px;
 }
 
 .hidden {
