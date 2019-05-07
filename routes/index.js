@@ -102,6 +102,7 @@ router.get('/', function(req, res, next) {
 });
 
 
+var accountNameRegex = /^\w+$/;
 
 
 /* POST create account form */
@@ -110,13 +111,23 @@ router.post('/createaccount', function(req, res) {
   var password = req.body.password.trim();
   var confirmpass = req.body.confirm.trim();
 
+  if (accountname.length < 5 || accountname.length > 20) {
+    res.redirect('/?accountmessage=' + encodeURIComponent("Account name must be between 5 and 20 characters") + '#createaccount');
+    return;
+  }
+
+  if (!accountNameRegex.test(accountname)) {
+    res.redirect('/?accountmessage=' + encodeURIComponent("Account name contains invalid characters") + '#createaccount');
+    return;
+  }
+
   if (password !== confirmpass) {
     res.redirect('/?accountmessage=' + encodeURIComponent("Passwords don't match") + '#createaccount');
     return;
   }
 
   if (password.length < 8) {
-    res.redirect('/?accountmessage=' + encodeURIComponent("Password too short") + '#createaccount');
+    res.redirect('/?accountmessage=' + encodeURIComponent("Password must be 8 characters or more") + '#createaccount');
     return;
   }
   
