@@ -64,12 +64,14 @@ block content
       th Name
       th Class
       th Status
+      th Time Taken
     each val in levelLeaderboard
       tr
         td= val.level
         td= val.name
         td= val.race + " " + val.class
         td= val.status
+        td= val.time
   form(action="createaccount", id="createaccount", method="post")
     h4 Create Account
     br

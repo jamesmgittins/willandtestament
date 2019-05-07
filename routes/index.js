@@ -19,7 +19,7 @@ if (!String.prototype.format) {
 var accountCheckQuery = "SELECT * FROM classicrealmd.account WHERE username = '{0}';";
 var accountIdQuery = "SELECT MAX(id)+1 AS 'id' FROM classicrealmd.account;"
 var accountCreateQuery = "INSERT INTO classicrealmd.account (id, username, sha_pass_hash) VALUES ({0}, '{1}', '{2}');";
-var levelLeaderboardQuery = "SELECT c.name, c.race, c.class, c.level, c.totaltime - c.leveltime AS 'time', playerFlags & 0x00000010 AS 'ghost' FROM classiccharacters.characters c, classicrealmd.account a WHERE c.account = a.id AND a.gmlevel = 0 ORDER BY 4 DESC, 5 ASC LIMIT 10;";
+var levelLeaderboardQuery = "SELECT c.name, c.race, c.class, c.level, c.totaltime - c.leveltime AS 'time', playerFlags & 0x00000010 AS 'ghost' FROM classiccharacters.characters c, classicrealmd.account a WHERE c.account = a.id AND a.gmlevel = 0 AND c.level > 1 ORDER BY 4 DESC, 5 ASC LIMIT 10;";
 
 function charClassTranslate(id) {
   switch(id){
@@ -69,6 +69,13 @@ function charRaceTranslate(id) {
   }
 }
 
+function timeTranslate(d) {
+  d = Number(d);
+  var h = Math.floor(d / 3600);
+  var m = Math.floor(d % 3600 / 60);
+  return h > 0 ? h + 'h ' + m + 'm' : m + 'm';
+}
+
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -77,28 +84,42 @@ var con = mysql.createConnection({
 
 con.connect();
 
+var levelLeaderboard = [];
+var lastLeaderboarUpdate = 0;
+
+function updateLeaderBoard(after) {
+
+  if (lastLeaderboarUpdate < Date.now() - 600000)  {
+    lastLeaderboarUpdate = Date.now();
+    con.query(levelLeaderboardQuery, function(err, result, fields){
+      if (err) throw err;
+      levelLeaderboard = [];
+  
+      for (var i=0; i < result.length; i++) {
+        levelLeaderboard[i] = {
+          name:result[i].name,
+          level:result[i].level,
+          race:charRaceTranslate(result[i].race),
+          class:charClassTranslate(result[i].class),
+          time:timeTranslate(result[i].time),
+          status:result[i].ghost > 0 ? "Dead" : "Alive"
+        };
+      }
+  
+      after();
+    });
+  }
+  else {
+    after();
+  }  
+}
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  con.query(levelLeaderboardQuery, function(err, result, fields){
-
-    var levelLeaderboard = [];
-
-    for (var i=0; i < result.length; i++) {
-      levelLeaderboard[i] = {
-        name:result[i].name,
-        level:result[i].level,
-        race:charRaceTranslate(result[i].race),
-        class:charClassTranslate(result[i].class),
-        time:result[i].time,
-        status:result[i].ghost > 0 ? "Dead" : "Alive"
-      };
-    }
-
+  updateLeaderBoard(function(){
     res.render('index', { title: 'Will and Testament', accountmessage:req.query.accountmessage, levelLeaderboard:levelLeaderboard });
   });
-  
 });
 
 
