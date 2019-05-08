@@ -20,21 +20,22 @@ block content
       br
       if(accountmessage)
         strong= accountmessage
-  h4 Character Leaderboard
-  table
-    tr
-      th Level
-      th Name
-      th Class
-      th Status
-      th Time Taken
-    each val in levelLeaderboard
+  #leaderboard
+    h4 Character Leaderboard
+    table
       tr
-        td= val.level
-        td= val.name
-        td= val.race + " " + val.class
-        td= val.status
-        td= val.time
+        th Level
+        th Name
+        th Class
+        th Status
+        th Time Taken
+      each val in levelLeaderboard
+        tr
+          td= val.level
+          td= val.name
+          td= val.race + " " + val.class
+          td= val.status
+          td= val.time
   div(id="server-notes")
     h4 Server Information
     p Based on the latest 
