@@ -97,7 +97,7 @@ function updateLeaderBoard(after) {
   
       for (var i=0; i < result.length; i++) {
         levelLeaderboard[i] = {
-          name:result[i].name ? result[i].name : result[i].deadname,
+          name:result[i].name.length > 0 ? result[i].name : result[i].deadname,
           level:result[i].level,
           race:charRaceTranslate(result[i].race),
           class:charClassTranslate(result[i].class),
