@@ -15,12 +15,24 @@ body {
   margin: 5px auto;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   body {
     padding: 5px;
   }
 }
 
+@media only screen and (min-width: 768px) {
+  div.column {
+    float:left;
+    width:calc(50% - 15px);
+    padding-left:15px;
+  }
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5em;
+}
 
 
 a {
@@ -31,9 +43,8 @@ a.link {
 }
 
 form#createaccount {
-  background: rgba(0,0,0,0.5);
-  padding: 15px 15px;
-  display: inline-block;
+  text-align: center;
+  padding:30px;
 }
 
 #createaccount h4 {
@@ -74,6 +85,7 @@ table th, table td {
 }
 
 #server-notes {
+  clear: both;
   background: rgba(0,0,0,0.5);
   padding: 5px 15px;
   margin: 15px 0;

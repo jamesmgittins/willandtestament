@@ -1,11 +1,40 @@
 extends layout
 
 block content
-  h1= title
-  p Death is inevitable. The only question is; 
-    strong what will you leave behind?
-  p A unique Vanilla WoW experience, featuring perma-death and an account wide progression system.
-  a(href="#createaccount", class="link") Create Account
+  div(class="column")
+    h1= title
+    p Death is inevitable. The only question is; 
+      strong what will you leave behind?
+    p A unique Vanilla WoW experience, featuring perma-death and an account wide progression system.
+  div(class="column")
+    form(action="createaccount", id="createaccount", method="post")
+      h4 Create Account
+      br
+      input(type="text", placeholder="username", name="username")
+      br
+      input(type="password", placeholder="password", name="password")
+      br
+      input(type="password", placeholder="confirm password", name="confirm")
+      br
+      button Submit
+      br
+      if(accountmessage)
+        strong= accountmessage
+  h4 Character Leaderboard
+  table
+    tr
+      th Level
+      th Name
+      th Class
+      th Status
+      th Time Taken
+    each val in levelLeaderboard
+      tr
+        td= val.level
+        td= val.name
+        td= val.race + " " + val.class
+        td= val.status
+        td= val.time
   div(id="server-notes")
     h4 Server Information
     p Based on the latest 
@@ -57,31 +86,5 @@ block content
       li Druids can now proc weapons and weapon enchants (eg crusader) in feral forms
       li Soulshards are now stackable
       li Enchanting vendors sell all rod types
-  h4 Character Leaderboard
-  table
-    tr
-      th Level
-      th Name
-      th Class
-      th Status
-      th Time Taken
-    each val in levelLeaderboard
-      tr
-        td= val.level
-        td= val.name
-        td= val.race + " " + val.class
-        td= val.status
-        td= val.time
-  form(action="createaccount", id="createaccount", method="post")
-    h4 Create Account
-    br
-    input(type="text", placeholder="username", name="username")
-    br
-    input(type="password", placeholder="password", name="password")
-    br
-    input(type="password", placeholder="confirm password", name="confirm")
-    br
-    button Submit
-    br
-    if(accountmessage)
-      strong= accountmessage
+
+
