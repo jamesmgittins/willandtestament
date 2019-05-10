@@ -1,23 +1,23 @@
 extends layout
 
 block content
-  div(class="column")
+  div.column
     h1= title
     p Death is inevitable. The only question is; 
       strong what will you leave behind?
     p A unique Vanilla WoW experience, featuring perma-death and an account wide progression system.
-  div(class="column")
+  div.column
     form(action="createaccount", id="createaccount", method="post")
       h4 Create Account
       br
       label(for="username") Username
-      input(type="text", placeholder="username", name="username")
+      input#username(type="text", placeholder="username", name="username")
       br
       label(for="password") Password
-      input(type="password", placeholder="password", name="password")
+      input#password(type="password", placeholder="password", name="password")
       br
       label(for="confirm") Confirm Password
-      input(type="password", placeholder="confirm password", name="confirm")
+      input#confirm(type="password", placeholder="confirm password", name="confirm")
       br
       button Submit
       br
@@ -39,7 +39,7 @@ block content
           td= val.race + " " + val.class
           td= val.status
           td= val.time
-  div(id="server-notes")
+  div#server-notes
     h4 Server Information
     p Based on the latest 
       a(href="https://cmangos.net/") CMaNGOS
