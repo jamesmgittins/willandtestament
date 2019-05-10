@@ -48,7 +48,7 @@ form#createaccount {
   font-size: 20px;
   padding:5px;
   display: block;
-  width: 100%;
+  width: calc(100% - 14px);
 }
 #createaccount strong, #createaccount button {margin: 10px 0;display: block;}
 #createaccount button {font-size: 20px;margin:auto;width:50%;padding:5px;}
