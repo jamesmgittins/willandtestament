@@ -10,10 +10,13 @@ block content
     form(action="createaccount", id="createaccount", method="post")
       h4 Create Account
       br
+      label(for="username") Username
       input(type="text", placeholder="username", name="username")
       br
+      label(for="password") Password
       input(type="password", placeholder="password", name="password")
       br
+      label(for="confirm") Confirm Password
       input(type="password", placeholder="confirm password", name="confirm")
       br
       button Submit

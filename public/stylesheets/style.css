@@ -5,8 +5,6 @@ html {
   background-size: cover;
   background-attachment: fixed;
 }
-
-
 body {
   padding: 50px;
   font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -14,14 +12,54 @@ body {
   max-width: 1024px;
   margin: 5px auto;
 }
-
-@media only screen and (max-width: 768px) {
-  body {
-    padding: 10px;
-  }
-  #leaderboard, #server-notes {
-    margin:15px -10px !important;
-  }
+p {text-align: left;}
+div.column {text-align: center;}
+h1 {
+  text-align: center;
+  text-shadow: 5px 5px #000;
+  font-family: serif;
+  font-size: 3em;
+}
+h4 {
+  margin: 15px 0;
+  border-bottom:1px solid;
+}
+#leaderboard {
+  clear: both;
+  background: rgba(0,0,0,0.5);
+  padding: 5px 15px 15px 15px;
+  margin: 15px 0;
+}
+a {color: #00B7FF;}
+a.link {margin-right: 15px;}
+form#createaccount {
+  display: inline-block;
+  text-align: center;
+  padding:30px;
+}
+#createaccount h4 {display: inline;}
+#createaccount label {
+  display: block;
+  text-align: left;
+  margin: 10px 0 0 0;
+}
+#createaccount input {
+  margin:0 0 15px 0;
+  font-size: 20px;
+  padding:5px;
+}
+#createaccount strong, #createaccount button {margin: 10px 0;}
+#createaccount button {font-size: 20px;}
+ul > li {margin: 5px 0;}
+table th, table td {
+  text-align: left;
+  padding: 5px 15px 5px 0;
+}
+#server-notes {
+  clear: both;
+  background: rgba(0,0,0,0.5);
+  padding: 5px 15px;
+  margin: 15px 0;
 }
 
 @media only screen and (min-width: 768px) {
@@ -31,72 +69,7 @@ body {
     padding-left:15px;
   }
 }
-
-h1 {
-  text-align: center;
-  text-shadow: 5px 5px #000;
-  font-family: serif;
-  font-size: 3em;
-}
-
-h4 {
-  margin: 15px 0;
-  border-bottom:1px solid;
-}
-
-#leaderboard {
-  clear: both;
-  background: rgba(0,0,0,0.5);
-  padding: 5px 15px 15px 15px;
-  margin: 15px 0;
-}
-
-a {
-  color: #00B7FF;
-}
-a.link {
-  margin-right: 15px;
-}
-
-form#createaccount {
-  text-align: center;
-  padding:30px;
-}
-
-#createaccount h4 {
-  display: inline;
-}
-
-#createaccount input {
-  margin:15px 0;
-  font-size: 20px;
-  padding:5px;
-}
-
-#createaccount strong, #createaccount button {
-  margin: 10px 0;
-}
-
-#createaccount button {
-  font-size: 20px;
-}
-
-.hidden {
-  display:none;
-}
-
-ul > li {
-  margin: 5px 0;
-}
-
-table th, table td {
-  text-align: left;
-  padding: 5px 15px 5px 0;
-}
-
-#server-notes {
-  clear: both;
-  background: rgba(0,0,0,0.5);
-  padding: 5px 15px;
-  margin: 15px 0;
+@media only screen and (max-width: 768px) {
+  body {padding: 10px;}
+  #leaderboard, #server-notes {margin:15px -10px !important;}
 }
