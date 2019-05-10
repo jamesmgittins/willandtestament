@@ -36,8 +36,8 @@ form#createaccount {
   display: inline-block;
   text-align: center;
   padding:30px;
+  width:320px;
 }
-#createaccount h4 {display: inline;}
 #createaccount label {
   display: block;
   text-align: left;
@@ -47,9 +47,11 @@ form#createaccount {
   margin:0 0 15px 0;
   font-size: 20px;
   padding:5px;
+  display: block;
+  width: 100%;
 }
-#createaccount strong, #createaccount button {margin: 10px 0;}
-#createaccount button {font-size: 20px;}
+#createaccount strong, #createaccount button {margin: 10px 0;display: block;}
+#createaccount button {font-size: 20px;margin:auto;width:50%;padding:5px;}
 ul > li {margin: 5px 0;}
 table th, table td {
   text-align: left;

@@ -135,29 +135,29 @@ router.post('/createaccount', function(req, res) {
   var confirmpass = req.body.confirm.trim();
 
   if (accountname.length < 5 || accountname.length > 20) {
-    res.redirect('/?accountmessage=' + encodeURIComponent("Account name must be between 5 and 20 characters") + '#createaccount');
+    res.redirect('/?accountmessage=' + encodeURIComponent("Account name must be between 5 and 20 characters"));
     return;
   }
 
   if (!accountNameRegex.test(accountname)) {
-    res.redirect('/?accountmessage=' + encodeURIComponent("Account name contains invalid characters") + '#createaccount');
+    res.redirect('/?accountmessage=' + encodeURIComponent("Account name contains invalid characters"));
     return;
   }
 
   if (password !== confirmpass) {
-    res.redirect('/?accountmessage=' + encodeURIComponent("Passwords don't match") + '#createaccount');
+    res.redirect('/?accountmessage=' + encodeURIComponent("Passwords don't match"));
     return;
   }
 
   if (password.length < 8) {
-    res.redirect('/?accountmessage=' + encodeURIComponent("Password must be 8 characters or more") + '#createaccount');
+    res.redirect('/?accountmessage=' + encodeURIComponent("Password must be 8 characters or more"));
     return;
   }
   
   con.query(accountCheckQuery.format(accountname.toUpperCase()), function (err, result, fields) {
     if (err) throw err;
     if (result.length > 0) {
-      res.redirect('/?accountmessage=' + encodeURIComponent("Account already exists") + '#createaccount');
+      res.redirect('/?accountmessage=' + encodeURIComponent("Account already exists"));
       return;
     } else {
 
@@ -170,7 +170,7 @@ router.post('/createaccount', function(req, res) {
 
         con.query(accountCreateQuery.format(result[0].id, accountname.toUpperCase(), passwordHash), function(err){
           if (err) throw err;
-          res.redirect('/?accountmessage=' + encodeURIComponent("Account created") + '#createaccount');
+          res.redirect('/?accountmessage=' + encodeURIComponent("Account created"));
         });
       });
       

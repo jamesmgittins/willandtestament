@@ -9,18 +9,13 @@ block content
   div.column
     form(action="createaccount", id="createaccount", method="post")
       h4 Create Account
-      br
       label(for="username") Username
       input#username(type="text", placeholder="username", name="username")
-      br
       label(for="password") Password
       input#password(type="password", placeholder="password", name="password")
-      br
       label(for="confirm") Confirm Password
       input#confirm(type="password", placeholder="confirm password", name="confirm")
-      br
       button Submit
-      br
       if(accountmessage)
         strong= accountmessage
   #leaderboard
