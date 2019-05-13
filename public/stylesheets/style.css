@@ -16,7 +16,7 @@ p {text-align: left;}
 div.column {text-align: center;}
 h1 {
   text-align: center;
-  text-shadow: 5px 5px #000;
+  text-shadow: 5px 5px rgb(10,10,20);
   font-family: serif;
   font-size: 3em;
 }
@@ -24,11 +24,11 @@ h4 {
   margin: 15px 0;
   border-bottom:1px solid;
 }
-#leaderboard {
+#leaderboard, #server-notes {
   clear: both;
-  background: rgba(0,0,0,0.5);
-  padding: 5px 15px 15px 15px;
+  background: rgba(10,10,20,0.7);
   margin: 15px 0;
+  padding: 5px 15px 15px 15px;
 }
 a {color: #00B7FF;}
 a.link {margin-right: 15px;}
@@ -57,13 +57,6 @@ table th, table td {
   text-align: left;
   padding: 5px 15px 5px 0;
 }
-#server-notes {
-  clear: both;
-  background: rgba(0,0,0,0.5);
-  padding: 5px 15px;
-  margin: 15px 0;
-}
-
 @media only screen and (min-width: 768px) {
   div.column {
     float:left;
