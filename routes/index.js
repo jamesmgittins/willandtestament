@@ -19,7 +19,7 @@ if (!String.prototype.format) {
 var accountCheckQuery = "SELECT * FROM classicrealmd.account WHERE username = '{0}';";
 var accountIdQuery = "SELECT MAX(id)+1 AS 'id' FROM classicrealmd.account;"
 var accountCreateQuery = "INSERT INTO classicrealmd.account (id, username, sha_pass_hash) VALUES ({0}, '{1}', '{2}');";
-var levelLeaderboardQuery = "SELECT c.name, c.race, c.class, c.level, c.totaltime - c.leveltime AS 'time', playerFlags & 0x00000010 AS 'ghost', c.deleteInfos_Name as deadname FROM classiccharacters.characters c, classicrealmd.account a WHERE (c.account = a.id OR deleteInfos_Account = a.id) AND a.gmlevel = 0 AND c.level > 1 ORDER BY 4 DESC, 5 ASC LIMIT 10;";
+var levelLeaderboardQuery = "SELECT c.name, c.race, c.class, c.level, c.totaltime - c.leveltime AS 'time', playerFlags & 0x00000010 AS 'ghost', c.deleteInfos_Name as deadname FROM classiccharacters.characters c, classicrealmd.account a WHERE (c.account = a.id OR deleteInfos_Account = a.id) AND a.gmlevel = 0 AND c.level > 1 ORDER BY 4 DESC, 5 ASC LIMIT 1000;";
 
 function charClassTranslate(id) {
   switch(id){
@@ -104,8 +104,6 @@ function updateLeaderBoard(after) {
           time:timeTranslate(result[i].time),
           status:result[i].ghost > 0 ? "Dead" : "Alive"
         };
-
-        
       }
   
       after();
@@ -121,6 +119,13 @@ function updateLeaderBoard(after) {
 router.get('/', function(req, res, next) {
   updateLeaderBoard(function(){
     res.render('index', { title: 'Will and Testament', accountmessage:req.query.accountmessage, levelLeaderboard:levelLeaderboard });
+  });
+});
+
+/* GET home page. */
+router.get('/leaderboard', function(req, res, next) {
+  updateLeaderBoard(function(){
+    res.render('leaderboard', { title: 'Will and Testament', levelLeaderboard:levelLeaderboard });
   });
 });
 

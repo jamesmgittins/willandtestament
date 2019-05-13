@@ -27,13 +27,16 @@ block content
         th Class
         th Status
         th Time Taken
-      each val in levelLeaderboard
-        tr
-          td= val.level
-          td= val.name
-          td= val.race + " " + val.class
-          td= val.status
-          td= val.time
+      each val,index in levelLeaderboard
+        if index < 10
+          tr
+            td= val.level
+            td= val.name
+            td= val.race + " " + val.class
+            td= val.status
+            td= val.time
+    if levelLeaderboard.length > 10
+      a(href="/leaderboard", target="_blank") Full Leaderboard
   div#server-notes
     h4 Server Information
     p Based on the latest 
