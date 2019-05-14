@@ -15,5 +15,5 @@ block content
           td= val.level
           td= val.name
           td= val.race + " " + val.class
-          td= val.status
+          td(class=val.status.toLowerCase())= val.status
           td= val.time
