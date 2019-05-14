@@ -32,6 +32,8 @@ h4 {
 }
 a {color: #00B7FF;}
 a.link {margin-right: 15px;}
+td.dead {color:#cc6666;}
+td.alive {color:#66cc66;}
 form#createaccount {
   display: inline-block;
   text-align: center;
