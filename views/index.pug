@@ -34,6 +34,8 @@ block content
           tr
             td= val.level
             td= val.name
+              if(val.online)
+                span.online(title='online')
             td= val.race + " " + val.class
             td(class=val.status.toLowerCase())= val.status
             td= val.time

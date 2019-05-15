@@ -19,7 +19,7 @@ if (!String.prototype.format) {
 var accountCheckQuery = "SELECT * FROM classicrealmd.account WHERE username = '{0}';";
 var accountIdQuery = "SELECT MAX(id)+1 AS 'id' FROM classicrealmd.account;"
 var accountCreateQuery = "INSERT INTO classicrealmd.account (id, username, sha_pass_hash) VALUES ({0}, '{1}', '{2}');";
-var levelLeaderboardQuery = "SELECT c.name, c.race, c.class, c.level, c.totaltime - c.leveltime AS 'time', playerFlags & 0x00000010 AS 'ghost', c.deleteInfos_Name as deadname FROM classiccharacters.characters c, classicrealmd.account a WHERE (c.account = a.id OR deleteInfos_Account = a.id) AND a.gmlevel = 0 AND c.level > 1 ORDER BY 4 DESC, 5 ASC LIMIT 1000;";
+var levelLeaderboardQuery = "SELECT c.name, c.race, c.class, c.level, c.totaltime - c.leveltime AS 'time', playerFlags & 0x00000010 AS 'ghost', c.deleteInfos_Name as deadname, c.online FROM classiccharacters.characters c, classicrealmd.account a WHERE (c.account = a.id OR deleteInfos_Account = a.id) AND a.gmlevel = 0 AND c.level > 1 ORDER BY 4 DESC, 5 ASC LIMIT 1000;";
 
 function charClassTranslate(id) {
   switch(id){
@@ -102,7 +102,8 @@ function updateLeaderBoard(after) {
           race:charRaceTranslate(result[i].race),
           class:charClassTranslate(result[i].class),
           time:timeTranslate(result[i].time),
-          status:result[i].ghost > 0 ? "Dead" : "Alive"
+          status:result[i].ghost > 0 ? "Dead" : "Alive",
+          online:result[i].online == 1
         };
       }
   
