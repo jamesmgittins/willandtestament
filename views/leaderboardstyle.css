@@ -1,0 +1,23 @@
+#leaderboard a {
+    margin-right:10px;
+    margin-bottom: 10px;
+    padding:5px;
+    cursor: pointer;
+}
+
+#leaderboard a.selected {
+    background:#339;
+    color:#fff;
+}
+
+#leaderboard a:hover {
+    background:#339;
+}
+
+#leaderboard hr {
+    color: #ccc;
+    background: #ccc;
+    height: 1px;
+    border: none;
+    margin-top: 15px;
+}
