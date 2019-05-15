@@ -3,6 +3,7 @@
     margin-bottom: 10px;
     padding:5px;
     cursor: pointer;
+    float:left;
 }
 
 #leaderboard a.selected {
@@ -20,4 +21,5 @@
     height: 1px;
     border: none;
     margin-top: 15px;
+    clear:both;
 }
