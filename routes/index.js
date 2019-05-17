@@ -73,7 +73,8 @@ function timeTranslate(d) {
   d = Number(d);
   var h = Math.floor(d / 3600);
   var m = Math.floor(d % 3600 / 60);
-  return h > 0 ? h + 'h ' + m + 'm' : m + 'm';
+  var s = Math.floor(d % 3600 % 60);
+  return h > 0 ? h + 'h ' + m + 'm ' + s + 's' : m + 'm ' + s + 's';
 }
 
 var con = mysql.createConnection({
