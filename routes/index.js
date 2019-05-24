@@ -131,6 +131,11 @@ router.get('/leaderboard', function(req, res, next) {
   });
 });
 
+router.get('/dungeons', function(req, res, next) {
+  updateLeaderBoard(function(){
+    res.render('dungeons', { title: 'Will and Testament' });
+  });
+});
 
 var accountNameRegex = /^\w+$/;
 
