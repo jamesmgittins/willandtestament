@@ -15,6 +15,7 @@ block content
     a#mage-filter Mage
     a#warlock-filter Warlock
     a#druid-filter Druid
+    a#dead-filter Hide Dead Characters
     hr
     table
       thead
@@ -26,7 +27,7 @@ block content
           th Time Taken
       tbody
         each val in levelLeaderboard
-          tr(class=val.class.toLowerCase())
+          tr(class=val.class.toLowerCase() + ' ' + val.status.toLowerCase())
             td= val.level
             td= val.name
               if(val.online)
