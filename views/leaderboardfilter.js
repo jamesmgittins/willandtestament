@@ -1,5 +1,6 @@
 var filters = document.getElementById('leaderboard').getElementsByTagName('a');
 var deadFiltered = false;
+var lastfilter = 'all';
 
 function allRows(hide) {
     var rows = document.getElementById('leaderboard').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
