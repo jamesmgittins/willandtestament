@@ -20,6 +20,7 @@ var accountCheckQuery = "SELECT * FROM classicrealmd.account WHERE username = '{
 var accountIdQuery = "SELECT MAX(id)+1 AS 'id' FROM classicrealmd.account;"
 var accountCreateQuery = "INSERT INTO classicrealmd.account (id, username, sha_pass_hash) VALUES ({0}, '{1}', '{2}');";
 var levelLeaderboardQuery = "SELECT c.name, c.race, c.class, c.level, c.totaltime - c.leveltime AS 'time', playerFlags & 0x00000010 AS 'ghost', c.deleteInfos_Name as deadname, c.online FROM classiccharacters.characters c, classicrealmd.account a WHERE (c.account = a.id OR deleteInfos_Account = a.id) AND a.gmlevel = 0 AND c.level > 1 ORDER BY 4 DESC, 5 ASC LIMIT 1000;";
+var paragonLeaderboardQuery = "SELECT c.name, p.paragon_level FROM classiccharacters.characters c, classiccharacters.account_paragon p WHERE c.account = p.guid AND p.paragon_level > 0 AND (c.account, c.totaltime) IN (SELECT account, max(totaltime) totaltime FROM classiccharacters.characters GROUP BY account) ORDER BY p.paragon_level DESC;";
 
 function charClassTranslate(id) {
   switch(id){
@@ -86,6 +87,7 @@ var con = mysql.createConnection({
 con.connect();
 
 var levelLeaderboard = [];
+var paragonLeaderboard = [];
 var lastLeaderboarUpdate = 0;
 
 function updateLeaderBoard(after) {
@@ -107,8 +109,20 @@ function updateLeaderBoard(after) {
           online:result[i].online == 1
         };
       }
-  
-      after();
+
+      con.query(paragonLeaderboardQuery, function(err, result, fields) {
+        if (err) throw err;
+        paragonLeaderboard = [];
+
+        for (var i=0; i < result.length; i++) {
+          paragonLeaderboard[i] = {
+            name:result[i].name,
+            paragon:result[i].paragon_level
+          };
+        }
+
+        after();
+      });
     });
   }
   else {
@@ -120,7 +134,7 @@ function updateLeaderBoard(after) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   updateLeaderBoard(function(){
-    res.render('index', { title: 'Will and Testament', accountmessage:req.query.accountmessage, levelLeaderboard:levelLeaderboard });
+    res.render('index', { title: 'Will and Testament', accountmessage:req.query.accountmessage, levelLeaderboard:levelLeaderboard, paragonLeaderboard:paragonLeaderboard });
   });
 });
 

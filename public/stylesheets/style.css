@@ -30,6 +30,24 @@ h4 {
   margin: 15px 0;
   padding: 5px 15px 15px 15px;
 }
+#leaderboard{
+  display: table;
+  width:calc(100% - 30px);
+}
+div.boardsplit{
+  float:left;
+  width: 30%;
+}
+div.boardsplit:first-of-type {
+  width:70%;
+}
+
+@media only screen and (max-width: 982px) {
+  div.boardsplit,div.boardsplit:first-of-type {
+    width: 100%;
+  }
+}
+
 a {color: #00B7FF;}
 a.link {margin-right: 15px;}
 td.dead {color:#cc6666;}
@@ -77,4 +95,5 @@ table th, table td {
 @media only screen and (max-width: 768px) {
   body {padding: 10px;}
   #leaderboard, #server-notes {margin:15px -10px !important;}
+  #leaderboard {width:100%;}
 }

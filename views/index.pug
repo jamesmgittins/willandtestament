@@ -21,26 +21,38 @@ block content
       if(accountmessage)
         strong= accountmessage
   #leaderboard
-    h4 Character Leaderboard
-    table
-      tr
-        th Level
-        th Name
-        th Class
-        th Status
-        th Time Taken
-      each val,index in levelLeaderboard
-        if index < 10
-          tr
-            td= val.level
-            td= val.name
-              if(val.online)
-                span.online(title='online')
-            td= val.race + " " + val.class
-            td(class=val.status.toLowerCase())= val.status
-            td= val.time
-    if levelLeaderboard.length > 10
-      a(href="/leaderboard", target="_blank") Full Leaderboard
+    div.boardsplit
+      h4 Character Leaderboard
+      table
+        tr
+          th Level
+          th Name
+          th Class
+          th Status
+          th Time Taken
+        each val,index in levelLeaderboard
+          if index < 10
+            tr
+              td= val.level
+              td= val.name
+                if(val.online)
+                  span.online(title='online')
+              td= val.race + " " + val.class
+              td(class=val.status.toLowerCase())= val.status
+              td= val.time
+      if levelLeaderboard.length > 10
+        a(href="/leaderboard", target="_blank") Full Leaderboard
+    div.boardsplit
+      h4 Paragon Leaderboard
+      table
+        tr
+          th Name
+          th Paragon Level
+        each val,index in paragonLeaderboard
+          if index < 10
+            tr
+              td= val.name
+              td= val.paragon
   div#server-notes
     h4 Server Information
     p Based on the latest 
