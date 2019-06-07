@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1 Server Admin
+  form(action="chudmin/resetserver", id="resetserver", method="post")
+    button Reset Server
+    if(message)
+        strong= message
