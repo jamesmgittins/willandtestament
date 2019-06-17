@@ -25,4 +25,7 @@ block content
             td= val.race + " " + val.class
             td= val.online ? 'Online' : ''
             td
-              a(href="chudmin/resurrectplayer/" + val.id, onclick="return confirm('Are you sure you want to resurrect " + val.name +  "?')") Resurrect
+              if (val.online)
+                | Must be offline first
+              else
+                a(href="chudmin/resurrectplayer/" + val.id, onclick="return confirm('Are you sure you want to resurrect " + val.name +  "?')") Resurrect
