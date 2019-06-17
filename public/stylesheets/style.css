@@ -24,7 +24,7 @@ h4 {
   margin: 15px 0;
   border-bottom:1px solid;
 }
-#leaderboard, #server-notes {
+#leaderboard, #server-notes, .admin-form{
   clear: both;
   background: rgba(10,10,20,0.7);
   margin: 15px 0;

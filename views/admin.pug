@@ -2,7 +2,27 @@ extends layout
 
 block content
   h1 Server Admin
-  form(action="chudmin/resetserver", id="resetserver", method="post")
-    button Reset Server
-    if(message)
-        strong= message
+  if(message)
+    h2= message
+  form(action="chudmin/resetserver", id="resetserver", method="post", onsubmit="return confirm('Are you sure you want to restart the server?');", class="admin-form")
+    h4 Restart Server
+    button Restart Server
+  form(action="chudmin/resurrectplayer", id="resurrectplayer", method="post", class="admin-form")
+    h4 Resurrect Players
+    table
+        tr
+          th Guid
+          th Level
+          th Name
+          th Class
+          th Online
+          th
+        each val in deadchars
+          tr
+            td= val.id
+            td= val.level
+            td= val.name
+            td= val.race + " " + val.class
+            td= val.online ? 'Online' : ''
+            td
+              a(href="chudmin/resurrectplayer/" + val.id, onclick="return confirm('Are you sure you want to resurrect " + val.name +  "?')") Resurrect
