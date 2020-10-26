@@ -26,14 +26,15 @@ block content
           th Status
           th Time Taken
       tbody
-        each val in levelLeaderboard
-          tr(class=val.class.toLowerCase() + ' ' + val.status.toLowerCase())
-            td= val.level
-            td= val.name
-              if(val.online)
-                span.online(title='online')
-            td= val.race + " " + val.class
-            td(class=val.status.toLowerCase())= val.status
-            td= val.time
+        each val,index in levelLeaderboard
+          if index < 100
+            tr(class=val.class.toLowerCase() + ' ' + val.status.toLowerCase())
+              td= val.level
+              td= val.name
+                if(val.online)
+                  span.online(title='online')
+              td= val.race + " " + val.class
+              td(class=val.status.toLowerCase())= val.status
+              td= val.time
   script
     include leaderboardfilter.js
